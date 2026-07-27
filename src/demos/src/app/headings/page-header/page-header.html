@@ -1,0 +1,30 @@
+<div class="navbar bg-base-100 shadow-sm">
+  <div class="navbar-start">
+    <div class="dropdown">
+      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+        <app-side-menu />
+      </div>
+      <ul
+        tabindex="-1"
+        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+      >
+        @for (link of links(); track link.href) {
+          <li>
+            <a>{{ link.text }}</a>
+          </li>
+        }
+      </ul>
+    </div>
+    <a class="btn btn-ghost text-xl">Angular Demos</a>
+  </div>
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1">
+      @for (link of links(); track link.href) {
+        <li>
+          <a>{{ link.text }}</a>
+        </li>
+      }
+    </ul>
+  </div>
+  <app-page-header-end-part />
+</div>
