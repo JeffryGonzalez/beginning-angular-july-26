@@ -7,18 +7,11 @@
   </div>
   <nav class="flex-none">
     <ul class="menu menu-horizontal px-1">
-      <li>
-        <a href="https://angular.dev" target="_blank">
-          <app-external-link />
-          Angular Docs
-        </a>
-      </li>
-      <li>
-        <a href="https://class.hypertheory-labs.com" target="_blank">
-          <app-external-link />
-          Hypertheory Labs
-        </a>
-      </li>
+      @for (link of links(); track link.href) {
+        <li>
+          <app-link-item [link]="link" />
+        </li>
+      }
     </ul>
   </nav>
 </header>
