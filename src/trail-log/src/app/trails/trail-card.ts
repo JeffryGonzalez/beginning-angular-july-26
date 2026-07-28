@@ -1,38 +1,42 @@
 import { TitleCasePipe } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
+import { Trail } from './types';
 
 @Component({
   selector: 'app-trails-trail-card',
   imports: [TitleCasePipe],
   template: `
     <div class="card-body">
-      <h2 class="card-title text-secondary">{{ name() }}</h2>
+      <h2 class="card-title text-secondary">{{ trail().name }}</h2>
       <div class="stats stats-vertical lg:stats-horizontal shadow">
         <div class="stat">
           <div class="stat-title">Miles</div>
-          <div class="stat-value">{{ miles() }}</div>
+          <div class="stat-value">{{ trail().miles }}</div>
         </div>
 
         <div class="stat">
           <div class="stat-title">Level</div>
-          <div
-            class="stat-value"
-            [class.text-success]="difficulty() === 'easy'"
-            [class.text-info]="difficulty() === 'moderate'"
-            [class.text-warning]="difficulty() === 'hard'"
-            [class.text-error]="difficulty() === 'extreme'"
-          >
-            {{ difficulty() | titlecase }}
+          <div class="stat-value">
+            <span
+              [class.text-success]="trail().difficulty === 'easy'"
+              [class.text-info]="trail().difficulty === 'moderate'"
+              [class.text-warning]="trail().difficulty === 'hard'"
+              [class.text-error]="trail().difficulty === 'extreme'"
+              >{{ trail().difficulty | titlecase }}</span
+            >
           </div>
         </div>
       </div>
-
       <div class="card-actions justify-end">
-        <label class="label" [class.text-success]="favorite()" [class.text-neutral]="!favorite()">
-          {{ favorite() ? 'Favorite!' : 'Mark as Favorite' }}
+        <label
+          class="label"
+          [class.text-success]="trail().favorite"
+          [class.text-neutral]="!trail().favorite"
+        >
+          {{ trail().favorite ? 'Favorite!' : 'Mark as Favorite' }}
           <input
             type="checkbox"
-            [checked]="favorite()"
+            [checked]="trail().favorite"
             (change)="toggleFavorite()"
             class="toggle toggle-sm"
           />
@@ -40,15 +44,17 @@ import { Component, signal } from '@angular/core';
       </div>
     </div>
   `,
+
   styleUrl: './trail-card.css',
+  host: {
+    '[class.ring-4]': 'trail().favorite',
+    '[class.ring-success]': 'trail().favorite',
+  },
 })
 export class TrailCard {
-  protected readonly name = signal('Woodpecker Way Loop');
-  protected readonly miles = signal(1.8);
-  protected readonly difficulty = signal<'easy' | 'moderate' | 'hard' | 'extreme'>('extreme');
-  protected readonly favorite = signal(false);
+  readonly trail = input.required<Trail>();
 
-  toggleFavorite() {
-    this.favorite.update((f) => !f);
+  protected toggleFavorite() {
+    //this.favorite.set(!this.favorite());
   }
 }
