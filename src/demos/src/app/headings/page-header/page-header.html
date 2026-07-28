@@ -19,10 +19,11 @@
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
-     
       @for (link of links(); track link.href) {
         <li>
-          <a>{{ link.text }}</a>
+          <a [routerLinkActive]="['link', 'link-accent']" [routerLink]="link.href">{{
+            link.text
+          }}</a>
         </li>
       }
     </ul>
