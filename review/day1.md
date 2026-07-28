@@ -4,6 +4,14 @@ Welcome back! Please go to https://class.hypertheory-labs.com and sign in and co
 
 **Let me know if you have any problems getting into your VM**
 
+First things:
+- Review how to get caught up with my code (classroom sync)
+- Purpose of the labs
+- Leading up to Thursday afternoon lab
+    - less prescriptive
+    - Can you do it?
+
+
 Review:
 
 ## What is Angular?
