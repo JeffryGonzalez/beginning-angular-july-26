@@ -54,7 +54,7 @@ Review:
 - There are limited mechanisms for components to share state with other components, and for components to invoke code on other components. We will cover this this morning.
 - Component Templates
     - Appear to HTML, but actually a language.
-    - Can have *binding expressions* which use the `{{ 2 + 2}}` syntax. They contain a programmatic expression that produces a value.
+    - Can have *binding expressions* which use the `{{ 2 + 2 }}` syntax. They contain a programmatic expression that produces a value.
     - Contains HTML elements
     - Contains other components, however those components must be imported into the component for them to be recognized.
     - Has control-flow syntax, including `@if(), @for(), @switch(), @let`. We'll cover all of these.
