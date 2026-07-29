@@ -1,5 +1,5 @@
 import { Component, computed, inject, input, output } from '@angular/core';
-import { CounterData } from './counter-data';
+import { counterStore } from './counter-store';
 
 @Component({
   selector: 'app-counter-fizzbuzz',
@@ -23,7 +23,7 @@ import { CounterData } from './counter-data';
   styles: ``,
 })
 export class FizzBuzz {
-  service = inject(CounterData);
+  service = inject(counterStore);
 
   whatToShowIfThereIsNothingToShow = input('boring');
   fizzbuzzAchieved = output<string>();

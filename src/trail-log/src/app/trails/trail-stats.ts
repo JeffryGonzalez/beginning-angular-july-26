@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import { Trail } from './types';
+import { Trail, TrailModel } from './types';
 import { TitleCasePipe } from '@angular/common';
 
 @Component({
@@ -38,7 +38,7 @@ import { TitleCasePipe } from '@angular/common';
   styles: ``,
 })
 export class TrailStats {
-  readonly trailList = input.required<Trail[]>();
+  readonly trailList = input.required<TrailModel[]>();
 
   protected readonly trailStats = computed(() => {
     const trails = this.trailList();

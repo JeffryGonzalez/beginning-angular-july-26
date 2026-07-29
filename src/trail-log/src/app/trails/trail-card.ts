@@ -1,6 +1,7 @@
 import { TitleCasePipe } from '@angular/common';
-import { Component, input, signal } from '@angular/core';
-import { Trail } from './types';
+import { Component, inject, input } from '@angular/core';
+import { TrailModel } from './types';
+import { Favorites } from './favorites';
 
 @Component({
   selector: 'app-trails-trail-card',
@@ -52,9 +53,9 @@ import { Trail } from './types';
   },
 })
 export class TrailCard {
-  readonly trail = input.required<Trail>();
-
+  readonly trail = input.required<TrailModel>();
+  favoriteService = inject(Favorites);
   protected toggleFavorite() {
-    //this.favorite.set(!this.favorite());
+    this.favoriteService.toggleFavorite(this.trail().id);
   }
 }

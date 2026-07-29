@@ -105,7 +105,7 @@ export class TrailList {
 
 
   protected readonly trails = computed(() => {
-    const favoriteIds = this.favorites.favorites();
+
     return this.apiTrails().map((trail) => ({
       ...trail,
       favorite: true, // this is the fake part! coming soon.
@@ -136,6 +136,10 @@ export class TrailCard {
 ```
 
 Don't forget to update your imports!
+
+## Update the input on the TrailStats component
+
+TODO: add this
 
 ## Create the service
 

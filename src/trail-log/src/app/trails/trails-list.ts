@@ -1,8 +1,9 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 
+import { Favorites } from './favorites';
+import { TrailCard } from './trail-card';
 import { TrailStats } from './trail-stats';
 import { Trail } from './types';
-import { TrailCard } from './trail-card';
 
 @Component({
   selector: 'app-trails-list',
@@ -20,55 +21,43 @@ import { TrailCard } from './trail-card';
   styles: ``,
 })
 export class TrailList {
-  protected readonly trails = signal<Trail[]>([
+  readonly favoritesService = inject(Favorites);
+  readonly apiTrails = signal<Trail[]>([
     {
+      id: '1',
       name: 'Woodpecker Way Loop',
       miles: 1.8,
       difficulty: 'easy',
-      favorite: false,
     },
     {
+      id: '2',
       name: 'Eagle Rock Trail',
       miles: 3.2,
       difficulty: 'moderate',
-      favorite: true,
     },
     {
+      id: '3',
       name: 'Bear Creek Trail',
       miles: 2.5,
       difficulty: 'hard',
-      favorite: false,
     },
     {
+      id: '4',
       name: 'Cedar Ridge Trail',
       miles: 4.1,
       difficulty: 'extreme',
-      favorite: false,
     },
     {
+      id: '5',
       name: 'Pine Valley Trail',
       miles: 5.0,
       difficulty: 'moderate',
-      favorite: false,
     },
   ]);
-  protected readonly trailStats = computed(() => {
-    const trails = this.trails();
-    const totalMiles = trails.reduce((sum, trail) => sum + trail.miles, 0);
-    const favoriteCount = trails.filter((trail) => trail.favorite).length;
-    const numberOfTrails = trails.length;
-
-    const milesByDifficulty = trails.reduce(
-      (acc, trail) => {
-        if (!acc[trail.difficulty]) {
-          acc[trail.difficulty] = 0;
-        }
-        acc[trail.difficulty] += trail.miles;
-        return acc;
-      },
-      {} as Record<string, number>,
-    );
-    const countOfFavoriteTrails = trails.filter((trail) => trail.favorite).length;
-    return { totalMiles, favoriteCount, numberOfTrails, milesByDifficulty, countOfFavoriteTrails };
+  protected readonly trails = computed(() => {
+    return this.apiTrails().map((trail) => ({
+      ...trail,
+      favorite: this.favoritesService.favorites().some((f) => f === trail.id),
+    }));
   });
 }

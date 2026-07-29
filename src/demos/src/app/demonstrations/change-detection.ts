@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
-import { CounterData } from './counter-data';
 import { CounterReset } from './counter-reset';
+import { counterStore } from './counter-store';
 import { FizzBuzz } from './fizz-buzz';
 
 @Component({
@@ -23,7 +23,7 @@ import { FizzBuzz } from './fizz-buzz';
   styles: ``,
 })
 export class ChangeDetection {
-  service = inject(CounterData);
+  service = inject(counterStore);
   myName = signal('Neither fizz, nor buzz, nor ');
 
   onFizzbuzz(s: string) {

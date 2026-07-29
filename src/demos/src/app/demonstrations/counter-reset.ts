@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CounterData } from './counter-data';
+import { counterStore } from './counter-store';
 
 @Component({
   selector: 'app-counter-reset',
@@ -16,5 +16,5 @@ import { CounterData } from './counter-data';
   styles: ``,
 })
 export class CounterReset {
-  service = inject(CounterData);
+  service = inject(counterStore);
 }

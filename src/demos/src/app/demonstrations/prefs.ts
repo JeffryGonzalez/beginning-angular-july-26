@@ -1,5 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
-import { CounterData } from './counter-data';
+import { Component, inject } from '@angular/core';
+import { counterStore } from './counter-store';
 
 @Component({
   selector: 'app-demos-prefs',
@@ -9,7 +9,7 @@ import { CounterData } from './counter-data';
       @for (by of service.countByRange; track by) {
         <button
           (click)="service.setBy(by)"
-          [ariaDisabled]="service.byValue() === by"
+          [ariaDisabled]="service.by() === by"
           class="btn join-item"
         >
           {{ by }}
@@ -20,5 +20,5 @@ import { CounterData } from './counter-data';
   styles: ``,
 })
 export class Prefs {
-  service = inject(CounterData);
+  service = inject(counterStore);
 }

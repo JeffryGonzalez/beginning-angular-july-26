@@ -8,12 +8,16 @@ export class CounterData {
   // Note - I find all of this pretty hideous. I would fail this PR. I'll show you a better way after lunch.
   // the good thing about this is you should be able to think through it.
 
+  // "state"
   private by = signal<CountByValues>(1);
   private _current = signal(0);
   public current = this._current.asReadonly();
-  countByRange = countByValues;
   public byValue = this.by.asReadonly();
 
+  // property (just some "stuff")
+  countByRange = countByValues;
+
+  // methods
   public setBy(newValue: CountByValues) {
     // a seam for me to be able to do other things, like save it to local storage or whatever.
     this.by.set(newValue);
@@ -30,6 +34,7 @@ export class CounterData {
     this._current.set(0);
   }
 
+  // computed stuff
   isEven = computed(() => {
     // it will track JUST the signal referred to inside this function - not EVERY singal.
     // when those signals produce a new value, this will be re-evaluated

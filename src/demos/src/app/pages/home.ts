@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CounterData } from '../demonstrations/counter-data';
+import { counterStore } from '../demonstrations/counter-store';
 
 @Component({
   selector: 'app-pages-home',
@@ -8,10 +8,10 @@ import { CounterData } from '../demonstrations/counter-data';
     <p>Welcome to the home page!</p>
 
     <br />
-    <p>By the way, your counter by value {{ counterService.byValue() }}</p>
+    <p>By the way, your counter by value {{ counterService.by() }}</p>
   `,
   styles: ``,
 })
 export class Home {
-  counterService = inject(CounterData);
+  counterService = inject(counterStore);
 }

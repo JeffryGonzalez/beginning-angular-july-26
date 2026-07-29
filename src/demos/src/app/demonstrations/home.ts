@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
+import { counterStore } from './counter-store';
 
 @Component({
   selector: 'app-demonstrations-home',
@@ -13,7 +14,13 @@ import { RouterOutlet, RouterLink } from '@angular/router';
     </div>
 
     <router-outlet />
+
+    <div>
+      <p>Current: {{ store.current() }} counting by {{ store.by() }}</p>
+    </div>
   `,
   styles: ``,
 })
-export class HomePage {}
+export class HomePage {
+  store = inject(counterStore);
+}
