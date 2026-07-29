@@ -6,6 +6,12 @@ import { FizzBuzz } from './fizz-buzz';
   imports: [FizzBuzz],
   template: `
     <div class="p-4">
+      @for (color of favoriteColors(); track $index) {
+        <p>{{ color }}</p>
+      } @empty {
+        <p>No Favorite Colors. That is sad!</p>
+      }
+
       <p>Hello from {{ myName() }} btw the number is even? {{ isEven() }}</p>
       <button (click)="myName.update((m) => m.toUpperCase())" class="btn btn-circle btn-error">
         XX
@@ -22,6 +28,7 @@ import { FizzBuzz } from './fizz-buzz';
 export class ChangeDetection {
   current = signal(0);
 
+  protected readonly favoriteColors = signal(['fuscia']);
   myName = signal('Jeff');
 
   isEven = computed(() => {

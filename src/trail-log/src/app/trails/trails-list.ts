@@ -20,7 +20,7 @@ import { TrailCard } from './trail-card';
   styles: ``,
 })
 export class TrailList {
-  readonly trails = signal<Trail[]>([
+  protected readonly trails = signal<Trail[]>([
     {
       name: 'Woodpecker Way Loop',
       miles: 1.8,

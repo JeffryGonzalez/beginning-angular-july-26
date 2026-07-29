@@ -5,7 +5,6 @@ import { Component, computed, input } from '@angular/core';
   imports: [],
   template: `
     @switch (fizzBuzz()) {
-
       @case ('fizz') {
         <p>Fizzing!</p>
       }
@@ -15,13 +14,9 @@ import { Component, computed, input } from '@angular/core';
       @case ('fizzbuzz') {
         <p>FIZZBUZZ!!!</p>
       }
-
-      @case('none') {
+      @case ('none') {
         <p>{{ message() }}</p>
       }
-     
-    
-    
     }
   `,
   styles: ``,
@@ -30,9 +25,9 @@ export class FizzBuzz {
   num = input.required<number>();
   message = input('boring');
 
-  fizzBuzz = computed< 'fizz' | 'buzz' | 'fizzbuzz' | 'none'>(() => {
+  fizzBuzz = computed<'fizz' | 'buzz' | 'fizzbuzz' | 'none'>(() => {
     const c = this.num();
-   
+
     if (c % 3 === 0 && c % 5 === 0) {
       return 'fizzbuzz';
     }
@@ -45,7 +40,7 @@ export class FizzBuzz {
     if (c === 0) {
       return 'none';
     } else {
-    return 'none';
+      return 'none';
     }
   });
 }
