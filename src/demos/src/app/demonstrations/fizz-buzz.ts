@@ -1,10 +1,11 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 @Component({
   selector: 'app-counter-fizzbuzz',
   imports: [],
   template: `
     @switch (fizzBuzz()) {
+
       @case ('fizz') {
         <p>Fizzing!</p>
       }
@@ -14,9 +15,13 @@ import { Component, computed, input, signal } from '@angular/core';
       @case ('fizzbuzz') {
         <p>FIZZBUZZ!!!</p>
       }
-      @case ('none') {
+
+      @case('none') {
         <p>{{ message() }}</p>
       }
+     
+    
+    
     }
   `,
   styles: ``,
@@ -25,11 +30,9 @@ export class FizzBuzz {
   num = input.required<number>();
   message = input('boring');
 
-  fizzBuzz = computed(() => {
+  fizzBuzz = computed< 'fizz' | 'buzz' | 'fizzbuzz' | 'none'>(() => {
     const c = this.num();
-    if (c === 0) {
-      return 'none';
-    }
+   
     if (c % 3 === 0 && c % 5 === 0) {
       return 'fizzbuzz';
     }
@@ -39,6 +42,10 @@ export class FizzBuzz {
     if (c % 5 === 0) {
       return 'buzz';
     }
+    if (c === 0) {
+      return 'none';
+    } else {
     return 'none';
+    }
   });
 }
