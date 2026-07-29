@@ -11,8 +11,8 @@ import { TrailCard } from './trail-card';
     <div class="flex flex-col md:flex-row gap-4">
       <app-trail-stats [trailList]="trails()"> </app-trail-stats>
       <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 w-fit gap-4">
-        @for (trail of trails(); track trail.name) {
-          <app-trails-trail-card [trail]="trail" class="" />
+        @for (daTrail of trails(); track daTrail.name) {
+          <app-trails-trail-card [trail]="daTrail" class="" />
         }
       </div>
     </div>
@@ -20,7 +20,7 @@ import { TrailCard } from './trail-card';
   styles: ``,
 })
 export class TrailList {
-  readonly trails = signal<Trail[]>([
+  protected readonly trails = signal<Trail[]>([
     {
       name: 'Woodpecker Way Loop',
       miles: 1.8,

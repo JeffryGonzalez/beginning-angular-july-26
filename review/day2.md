@@ -1,5 +1,4 @@
 # Day 2 Review
-> Jeff: Add the lab
 
 Welcome back! Please go to https://class.hypertheory-labs.com and sign in and connect to your VM.
 

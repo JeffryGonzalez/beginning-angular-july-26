@@ -1,16 +1,14 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home';
-import { ChangeDetection } from './demonstrations/change-detection';
+import { demoRoutes } from './demonstrations/demo-routes';
 
 export const routes: Routes = [
+  ...demoRoutes,
   {
     path: 'home',
     component: Home,
   },
-  {
-    path: 'demos',
-    component: ChangeDetection,
-  },
+
   {
     path: '**',
     redirectTo: 'home',
