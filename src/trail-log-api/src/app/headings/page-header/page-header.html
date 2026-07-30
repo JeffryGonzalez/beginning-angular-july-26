@@ -1,0 +1,17 @@
+<header class="navbar bg-base-100 shadow-sm">
+  <div class="flex-1">
+    <a href="/" class="btn btn-ghost text-xl dark:text-green-400 text-green-700">
+      <app-tree-icon />
+      Trail Log</a
+    >
+  </div>
+  <nav class="flex-none">
+    <ul class="menu menu-horizontal px-1">
+      @for (link of links(); track link.href) {
+        <li>
+          <app-link-item [link]="link" />
+        </li>
+      }
+    </ul>
+  </nav>
+</header>
