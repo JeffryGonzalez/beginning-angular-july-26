@@ -3,7 +3,7 @@ import { http, HttpHandler, HttpResponse, delay } from 'msw';
 import activeScenarios from '../active-scenarios';
 import { Trail } from '../../app/trails/types';
 
-const ENDPOINT = 'http://localhost:3000/trails';
+const ENDPOINT = 'http://localhost:3010/trails';
 
 const typicalResponse: Trail[] = [
   {

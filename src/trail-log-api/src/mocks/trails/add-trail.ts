@@ -3,7 +3,7 @@ import { http, HttpHandler, HttpResponse, delay } from 'msw';
 import activeScenarios from '../active-scenarios';
 import { Trail, TrailCreate } from '../../app/trails/types';
 
-const ENDPOINT = 'http://localhost:3000/trails';
+const ENDPOINT = 'http://localhost:3010/trails';
 
 // Echo the submitted trail back with a slug-ish id, the way the real API would.
 const created = (trail: TrailCreate): Trail => ({

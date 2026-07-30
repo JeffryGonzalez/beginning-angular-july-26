@@ -1,4 +1,4 @@
-endpoint: http://localhost:3000/trails
+endpoint: http://localhost:3010/trails
 method: POST
 description: Creates a trail from the Add Trail form and returns the persisted record.
 
@@ -13,8 +13,8 @@ context:
     - src/app/trails/types.ts
   hints:
     - "The submission action awaits store.addTrail() and then navigates to '' — the response body is never read, so only settling matters for the happy path."
-    - "The submit button uses [ariaDisabled], not [disabled], so it stays clickable while a submission is in flight."
-    - "There is no pending/spinner state in the template — a slow response leaves the form looking idle and re-submittable."
+    - 'The submit button uses [ariaDisabled], not [disabled], so it stays clickable while a submission is in flight.'
+    - 'There is no pending/spinner state in the template — a slow response leaves the form looking idle and re-submittable.'
     - "The store's addTrail does not refresh trailsResource, so the new trail only appears on the list page if that resource happens to reload."
 
 scenarios:
@@ -25,4 +25,4 @@ scenarios:
   slow:
     description: Tests what the user sees while the create request is in flight — the button shows no pending state, so it can be pressed repeatedly and fire duplicate submissions.
     httpStatus: 201
-    delay: "3000"
+    delay: '3000'

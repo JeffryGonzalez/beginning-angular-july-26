@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 
 import { trailsStore } from './services/trails-store';
 import { TrailCard } from './trail-card';
@@ -22,4 +22,14 @@ import { TrailStats } from './trail-stats';
 })
 export class TrailList {
   readonly store = inject(trailsStore);
+
+  constructor() {
+    effect((cleanup) => {
+      const timerId = setInterval(() => this.store.trailsResource.reload(), 5000);
+      cleanup(() => {
+        clearInterval(timerId);
+        console.log('quit polling');
+      });
+    });
+  }
 }

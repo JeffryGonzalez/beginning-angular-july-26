@@ -1,4 +1,4 @@
-endpoint: http://localhost:3000/trails
+endpoint: http://localhost:3010/trails
 method: GET
 shape: collection
 description: List of trails rendered by the trails list page and summarized by the stats panel.
@@ -17,10 +17,10 @@ context:
     - src/app/trails/types.ts
   hints:
     - "The list tracks by 'daTrail.name', not by 'id'. Duplicate names in one payload trigger Angular's duplicate-track-key error (NG0955)."
-    - "trailsResource is an httpResource with no error, loading, or empty-state markup anywhere in the template — error and slow scenarios currently render as a bare, empty grid."
+    - 'trailsResource is an httpResource with no error, loading, or empty-state markup anywhere in the template — error and slow scenarios currently render as a bare, empty grid.'
     - "'favorite' is not part of the API response. It is computed client-side by matching 'trail.id' against the favorites array persisted in localStorage under the key 'favorites'."
     - "MilesToFeetPipe calls '.toLocaleString()' on the multiplied value, so a null/undefined 'miles' throws during render rather than degrading."
-    - "trail-card only colors the difficulty text for the four literal union values; any other string renders uncolored."
+    - 'trail-card only colors the difficulty text for the four literal union values; any other string renders uncolored.'
     - "trail-stats keys 'milesByDifficulty' off whatever difficulty strings arrive, so an unexpected value adds a row to the stats panel."
 
 scenarios:
@@ -47,7 +47,7 @@ scenarios:
     description: Tests whether partially shaped records break rendering — missing miles hits the feet pipe, missing difficulty hits the color bindings and the stats grouping.
   slow:
     description: Tests what the user sees while the request is in flight, since there is no skeleton or spinner in the template.
-    delay: "2500"
+    delay: '2500'
   timeout:
     description: Tests the page when the request never settles and the grid stays empty indefinitely.
     delay: infinite

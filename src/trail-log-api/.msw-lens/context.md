@@ -1,5 +1,5 @@
 # msw-lens — project context
-generated: 2026-07-30T18:54:45.238Z
+generated: 2026-07-30T19:57:35.579Z
 
 > Drop this file into any LLM conversation for instant context about what
 > is mocked in this project, what scenarios exist, and what is currently active.
@@ -8,18 +8,19 @@ generated: 2026-07-30T18:54:45.238Z
 
 | endpoint | method | active scenario |
 |----------|--------|-----------------|
-| `http://localhost:3000/trails` | GET | `typical` |
+| `http://localhost:3010/trails` | GET | `overloaded` |
+| `http://localhost:3010/trails` | POST | `success` |
 
 ## Scenario details
 
-### GET `http://localhost:3000/trails`
+### GET `http://localhost:3010/trails`
 manifest: `src\mocks\trails\trails.yaml`
 > List of trails rendered by the trails list page and summarized by the stats panel.
 
-- **typical** ✓ **(active)** — Tests that the card grid and the stats panel both render, with a spread of difficulties so every difficulty color and every stats row is exercised.
+- **typical** — Tests that the card grid and the stats panel both render, with a spread of difficulties so every difficulty color and every stats row is exercised.
 - **empty** — Tests what the page shows when there is nothing to render — currently an empty grid and a stats panel reading 0, with no empty-state message.
 - **single-trail** — Tests the grid at its narrowest, where the responsive column classes have only one card to place.
-- **overloaded** — Tests the 4-column grid and the stats panel against far more trails than the layout was designed around.
+- **overloaded** ✓ **(active)** — Tests the 4-column grid and the stats panel against far more trails than the layout was designed around.
 - **duplicate-names** — Tests the list's track expression, which keys on name rather than id — two trails sharing a name should surface the duplicate-key failure.
 - **unknown-difficulty** — Tests that a difficulty outside the four known values still renders, picks up no color class, and adds its own row to the miles-by-difficulty breakdown.
 - **missing-ids** — Tests favorite toggling when records arrive without an id — marking one card favorite should not silently mark others.
@@ -37,6 +38,18 @@ sourceHints:
 - `src/app/trails/trail-card.ts`
 - `src/app/trails/trail-stats.ts`
 - `src/app/trails/pipes/miles-feet.ts`
+- `src/app/trails/types.ts`
+
+### POST `http://localhost:3010/trails`
+manifest: `src\mocks\trails\add-trail.yaml`
+> Creates a trail from the Add Trail form and returns the persisted record.
+
+- **success** ✓ **(active)** *(201)* — Tests that a valid submission settles and the form navigates back to the trails list.
+- **slow** *(201, delay: 3000)* — Tests what the user sees while the create request is in flight — the button shows no pending state, so it can be pressed repeatedly and fire duplicate submissions.
+
+sourceHints:
+- `src/app/trails/add-trail.ts`
+- `src/app/trails/services/trails-store.ts`
 - `src/app/trails/types.ts`
 
 ---

@@ -24,7 +24,7 @@ export const trailsStore = signalStore(
     favorites: [],
   }),
   withProps(() => ({
-    trailsResource: httpResource<Trail[]>(() => 'http://localhost:3000/trails'),
+    trailsResource: httpResource<Trail[]>(() => 'http://localhost:3010/trails'),
   })),
   withComputed((state) => ({
     trailsWithFavorites: computed(() => {
@@ -39,7 +39,10 @@ export const trailsStore = signalStore(
     const httpClient = inject(HttpClient);
     return {
       addTrail: async (trail: TrailCreate) => {
-        return await firstValueFrom(httpClient.post<Trail>('http://localhost:3000/trails', trail));
+        await firstValueFrom(httpClient.post<Trail>('http://localhost:3010/trails', trail));
+        // "pessimistic" - and it is the BEST way to do it. But you can't always do that.
+        // I'll talk about that in a second.
+        state.trailsResource.reload();
       },
       toggleFavorite: (trailId: string) => {
         const currentFavorites = state.favorites();

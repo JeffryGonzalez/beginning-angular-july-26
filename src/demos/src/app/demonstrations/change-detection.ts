@@ -10,7 +10,9 @@ import { MathButton } from './math-button';
   template: `
     <div class="p-4">
       <button appMathButton (click)="service.decrement()">-</button>
-      <span class="p-2">{{ service.current() }}</span>
+      <span class="p-4 m-2 font-extrabold bg-accent text-accent-content rounded">{{
+        service.current()
+      }}</span>
       <button appMathButton (click)="service.increment()">+</button>
     </div>
 

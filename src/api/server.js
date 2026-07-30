@@ -47,14 +47,14 @@ function validate(body) {
 }
 
 const app = express();
-app.use(cors());
+app.use(cors()); // super promiscuous - I'll take anything from anyone... this is good for demos, etc.
 app.use(express.json());
 
-app.get('/trails', (req, res) => {
+app.get('/api/trails', (req, res) => {
   res.json(selectAll.all() || []);
 });
 
-app.post('/trails', (req, res) => {
+app.post('/api/trails', (req, res) => {
   const errors = validate(req.body);
   if (errors.length > 0) {
     return res.status(400).json({ message: 'That trail is not valid.', errors });
@@ -68,11 +68,11 @@ app.post('/trails', (req, res) => {
   };
 
   insertOne.run(trail.id, trail.name, trail.miles, trail.difficulty);
-  res.status(201).location(`/trails/${trail.id}`).json(trail);
+  res.status(201).location(`/api/trails/${trail.id}`).json(trail);
 });
 
 // Not used by the app yet, but it makes the Location header above mean something.
-app.get('/trails/:id', (req, res) => {
+app.get('/api/trails/:id', (req, res) => {
   const trail = selectOne.get(req.params.id);
   if (!trail) {
     return res.status(404).json({ message: 'No trail with that id.' });
@@ -80,6 +80,7 @@ app.get('/trails/:id', (req, res) => {
   res.json(trail);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, (e) => {
   console.log(`Trails API listening on http://localhost:${PORT}`);
+  console.log(e)
 });

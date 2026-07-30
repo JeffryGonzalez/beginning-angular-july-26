@@ -75,7 +75,7 @@ export class AddTrail {
       submission: {
         action: async () => {
           console.log(this.model());
-          // add the method to the store.
+
           await this.store.addTrail(this.model());
           this.router.navigateByUrl('');
         },

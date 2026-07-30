@@ -8,8 +8,8 @@ POST {{host}}/trails
 Content-Type: application/json
 
 {
-  "name": "Bright Angel",
-  "miles": 13.8,
+  "name": "Colorado",
+  "miles": 130.8,
   "difficulty": "hard"
 }
 

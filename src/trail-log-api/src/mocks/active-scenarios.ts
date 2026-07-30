@@ -4,7 +4,7 @@
  * Keys are "METHOD endpoint", values are scenario names defined in the handler.
  */
 const activeScenarios: Record<string, string> = {
-  'GET http://localhost:3000/trails': 'typical',
+  'GET http://localhost:3010/trails': 'overloaded',
 };
 
 export default activeScenarios;

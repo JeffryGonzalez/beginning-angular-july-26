@@ -3,9 +3,7 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "schematicCollections": [
-      "angular-eslint"
-    ],
+    "schematicCollections": ["angular-eslint"],
     "analytics": "4700de40-e44c-4681-9eed-aed87d6d878f"
   },
   "newProjectRoot": "projects",
@@ -81,6 +79,7 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+
           "configurations": {
             "production": {
               "buildTarget": "trail-log:build:production"
