@@ -3,7 +3,7 @@ import { DatabaseSync } from 'node:sqlite';
 import cors from 'cors';
 import express from 'express';
 
-const PORT = process.env.PORT ?? 3000;
+const PORT = process.env.PORT ?? 3010;
 const DIFFICULTIES = ['easy', 'moderate', 'hard', 'extreme'];
 
 // The database file is created on first run and starts empty.
@@ -51,7 +51,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/trails', (req, res) => {
-  res.json(selectAll.all());
+  res.json(selectAll.all() || []);
 });
 
 app.post('/trails', (req, res) => {

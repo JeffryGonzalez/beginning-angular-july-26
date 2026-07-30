@@ -10,7 +10,7 @@ npm install
 npm start     # or: npm run dev   (restarts on file changes)
 ```
 
-Listens on <http://localhost:3000> — the same URL the Angular app calls. Set `PORT`
+Listens on <http://localhost:3010> — the same URL the Angular app calls. Set `PORT`
 to change it.
 
 Data lives in `trails.db`, created next to `server.js` on first run. It starts
