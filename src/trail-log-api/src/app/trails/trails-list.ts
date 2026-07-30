@@ -8,6 +8,7 @@ import { TrailStats } from './trail-stats';
   selector: 'app-trails-list',
   imports: [TrailStats, TrailCard],
   template: `
+    @if (store.trailsResource.isLoading()) {}
     <div class="flex flex-col md:flex-row gap-4">
       <app-trail-stats [trailList]="store.trailsWithFavorites()"> </app-trail-stats>
       <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 w-fit gap-4">

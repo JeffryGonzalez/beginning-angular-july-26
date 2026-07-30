@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
 
-import { PageHeader } from './headings/page-header/page-header';
-import { TrailList } from './trails/trails-list';
+import { RouterOutlet } from '@angular/router';
 import { StellarOverlayComponent } from '@hypertheory-labs/stellar-ng-devtools';
+import { PageHeader } from './headings/page-header/page-header';
 
 @Component({
   selector: 'app-root',
-  imports: [PageHeader, TrailList, StellarOverlayComponent],
+  imports: [PageHeader, StellarOverlayComponent, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

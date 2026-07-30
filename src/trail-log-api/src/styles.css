@@ -6,3 +6,55 @@
     nord --default,
     dracula --prefersdark;
 }
+
+/* You can add global styles to this file, and also import other style files */
+
+@import 'tailwindcss';
+@plugin "daisyui";
+
+@layer components {
+  form label,
+  fieldset label {
+    @apply label text-sm font-semibold pb-2;
+  }
+  form label:has(+ input[required])::after,
+  form label:has(+ textarea[required])::after,
+  form label:has(+ select[required])::after,
+  fieldset label:has(+ input[required])::after {
+    content: ' *';
+    color: var(--color-error);
+  }
+  pre {
+    @apply border-4 border-red-700;
+  }
+
+  /* The Lee Cooper Effect */
+
+  button[aria-disabled='true'] {
+    position: relative;
+    overflow: hidden;
+  }
+
+  button[aria-disabled='true']::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        transparent 0,
+        transparent 3px,
+        rgba(0, 0, 0, 0.25) 3px,
+        rgba(0, 0, 0, 0.25) 4px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        transparent 0,
+        transparent 3px,
+        rgba(0, 0, 0, 0.25) 3px,
+        rgba(0, 0, 0, 0.25) 4px
+      );
+  }
+}

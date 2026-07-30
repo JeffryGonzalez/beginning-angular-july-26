@@ -1,10 +1,11 @@
-import { Component, computed, input } from '@angular/core';
-import { Trail, TrailModel } from './types';
 import { TitleCasePipe } from '@angular/common';
+import { Component, computed, input } from '@angular/core';
+import { TrailModel } from './types';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-trail-stats',
-  imports: [TitleCasePipe],
+  imports: [TitleCasePipe, RouterLink],
   template: `
     <div class="stats stats-vertical shadow">
       <div class="stat">
@@ -33,6 +34,7 @@ import { TitleCasePipe } from '@angular/common';
           }
         </div>
       </div>
+      <a routerLink="add" class="btn btn-primary">Add A Trail</a>
     </div>
   `,
   styles: ``,
