@@ -2,15 +2,16 @@ import { Component, inject, signal } from '@angular/core';
 import { CounterReset } from './counter-reset';
 import { counterStore } from './counter-store';
 import { FizzBuzz } from './fizz-buzz';
+import { MathButton } from './math-button';
 
 @Component({
   selector: 'app-change-detection',
-  imports: [FizzBuzz, CounterReset],
+  imports: [FizzBuzz, CounterReset, MathButton],
   template: `
     <div class="p-4">
-      <button (click)="service.decrement()" class="btn btn-sm btn-primary">-</button>
+      <button appMathButton (click)="service.decrement()">-</button>
       <span class="p-2">{{ service.current() }}</span>
-      <button (click)="service.increment()" class="btn btn-sm btn-primary">+</button>
+      <button appMathButton (click)="service.increment()">+</button>
     </div>
 
     <app-counter-fizzbuzz

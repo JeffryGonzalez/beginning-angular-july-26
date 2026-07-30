@@ -11,6 +11,7 @@ import { counterStore } from './counter-store';
     <div class="flex flex-row gap-4">
       <a class="btn btn-link" routerLink="counter">Counter</a>
       <a class="btn btn-link" routerLink="prefs">Prefs</a>
+      <a class="btn btn-link" routerLink="music">Music</a>
     </div>
 
     <router-outlet />

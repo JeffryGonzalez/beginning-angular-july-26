@@ -1,0 +1,43 @@
+endpoint: https://api.fake-music-thing.com/bands
+method: GET
+shape: collection
+description: List of bands that appears on the music demo page.
+
+responseType:
+  name: Band
+  path: src/app/demonstrations/types.ts
+
+context:
+  sourceHints:
+    - src/app/demonstrations/music.ts
+    - src/app/demonstrations/types.ts
+  hints:
+    - The component currently renders a fixed card body for each band and only tracks by band.id.
+    - There is no dedicated loading, empty-state, or error-state markup in the component template.
+
+scenarios:
+  typical:
+    description: Tests that the band cards render when the request succeeds.
+    active: true
+  empty:
+    description: Tests that the page stays on the heading when no bands are available.
+    httpStatus: 200
+  overloaded:
+    description: Tests that the list still renders cleanly when many bands arrive at once.
+    httpStatus: 200
+  unauthorized:
+    description: Tests the app-level access fallback when the bands request is rejected.
+    httpStatus: 401
+  server-error:
+    description: Tests the error path when the bands request fails on the server.
+    httpStatus: 500
+  slow:
+    description: Tests the loading state while the bands request is still in flight.
+    delay: 4s
+  slow-and-empty:
+    description: combines the slow response above with the empty response.
+  timeout:
+    description: Tests the timeout path when the bands request never resolves.
+    delay: infinite
+  malformed-data:
+    description: Tests that partially shaped band records do not break the list rendering.

@@ -7,3 +7,9 @@
     nord --default,
     dracula --prefersdark;
 }
+
+@layer components {
+  .math-button {
+    @apply btn btn-circle btn-md btn-accent;
+  }
+}

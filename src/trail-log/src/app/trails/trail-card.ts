@@ -1,18 +1,20 @@
 import { TitleCasePipe } from '@angular/common';
 import { Component, inject, input } from '@angular/core';
+import { MilesToFeetPipe } from './pipes/miles-feet';
+import { trailsStore } from './services/trails-store';
 import { TrailModel } from './types';
-import { Favorites } from './favorites';
 
 @Component({
   selector: 'app-trails-trail-card',
-  imports: [TitleCasePipe],
+  imports: [TitleCasePipe, MilesToFeetPipe],
   template: `
     <div class="card-body">
       <h2 class="card-title text-secondary">{{ trail().name }}</h2>
-      <div class="stats stats-vertical lg:stats-horizontal shadow">
+      <div class="stats stats-vertical lg:stats-vertical shadow">
         <div class="stat">
           <div class="stat-title">Miles</div>
           <div class="stat-value">{{ trail().miles }}</div>
+          <div class="stat-desc">{{ trail().miles | milesFeet }}</div>
         </div>
 
         <div class="stat">
@@ -54,8 +56,8 @@ import { Favorites } from './favorites';
 })
 export class TrailCard {
   readonly trail = input.required<TrailModel>();
-  favoriteService = inject(Favorites);
+  readonly store = inject(trailsStore);
   protected toggleFavorite() {
-    this.favoriteService.toggleFavorite(this.trail().id);
+    this.store.toggleFavorite(this.trail().id);
   }
 }

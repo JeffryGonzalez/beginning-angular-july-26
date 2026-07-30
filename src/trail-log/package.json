@@ -18,6 +18,9 @@
     "@angular/forms": "^22.0.0",
     "@angular/platform-browser": "^22.0.0",
     "@angular/router": "^22.0.0",
+    "@hypertheory-labs/sanitize": "^0.4.1",
+    "@hypertheory-labs/stellar-ng-devtools": "^0.4.1",
+    "@ngrx/signals": "^21.1.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

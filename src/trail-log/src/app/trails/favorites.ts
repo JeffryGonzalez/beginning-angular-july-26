@@ -1,7 +1,7 @@
 import { effect, Service, signal } from '@angular/core';
 
 @Service()
-export class Favorites {
+export class xFavorites {
   private _favorites = signal<string[]>([]);
   public favorites = this._favorites.asReadonly();
 
