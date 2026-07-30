@@ -1,0 +1,37 @@
+@host = http://localhost:3000
+
+### List all trails
+GET {{host}}/trails
+
+### Add a trail
+POST {{host}}/trails
+Content-Type: application/json
+
+{
+  "name": "Bright Angel",
+  "miles": 13.8,
+  "difficulty": "hard"
+}
+
+### Add another one
+POST {{host}}/trails
+Content-Type: application/json
+
+{
+  "name": "Bear Lake Loop",
+  "miles": 0.8,
+  "difficulty": "easy"
+}
+
+### Rejected — name too short, miles out of range, unknown difficulty
+POST {{host}}/trails
+Content-Type: application/json
+
+{
+  "name": "X",
+  "miles": 2000,
+  "difficulty": "brutal"
+}
+
+### Get one trail (paste an id from the list above)
+GET {{host}}/trails/paste-an-id-here

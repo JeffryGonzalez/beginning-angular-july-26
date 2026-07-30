@@ -1,8 +1,9 @@
 import { HttpHandler } from 'msw';
 
 import bypassed from './bypassed-endpoints';
+import addTrailHandlers from './trails/add-trail';
 import trailsHandlers from './trails/trails';
-const all: HttpHandler[] = [...trailsHandlers];
+const all: HttpHandler[] = [...trailsHandlers, ...addTrailHandlers];
 
 export const handlers: HttpHandler[] = all.filter((h) => {
   const { method, path } = h.info;
